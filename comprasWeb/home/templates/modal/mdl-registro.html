@@ -1,0 +1,102 @@
+
+  <div class="modal" tabindex="-1" role="dialog" id="mdl_registro">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h5 class="modal-title">FORMULARIO DE REGISTRO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          <form  action="" method="post" class="row g-3 needs-validation" >
+            <!-- {% csrf_token %}
+            {{ form.as_p }} -->
+            <div class="col-md-6">
+              <label for="inpt_nombre" class="form-label">NOMBRE</label>
+              <input type="text" class="form-control" id="inpt_nombre" name="inpt_nombre" placeholder="Jorge" required>
+              <div class="valid-feedback">
+                Campo requerido
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="inpt_apellido" class="form-label">APELLIDO</label>
+              <input type="text" class="form-control" id="inpt_apellido" name="inpt_apellido" placeholder="Fuentes" required>
+              <div class="valid-feedback">
+                Campo requerido
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label for="inpt_correo" class="form-label">Correo electronico</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text" id="arroba">@</span>
+                <input type="text" class="form-control" id="inpt_correo" name="inpt_correo" aria-describedby="arroba" required>
+                <div class="invalid-feedback">
+                  Ingrese un correo electronico
+                </div>
+              </div>
+            </div>
+
+              <div class="col-md-6">
+                <label for="inpt_contrasena" class="form-label">CONRASEÑA</label>
+                <input type="password" class="form-control" id="inpt_contrasena" name="inpt_contrasena" required>
+                <div class="valid-feedback">
+                  Contraseña requerida
+                </div>
+              </div>
+
+
+           
+            <div class="col-md-6">
+              <label for="select_ciudad" class="form-label">CIUDAD</label>
+              <select class="form-select" id="select_ciudad" name="select_ciudad" required>
+                <option selected disabled value="">seleccione ciudad</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">
+                porfavor seleccione una ciudad
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="select_comuna" class="form-label">COMUNA</label>
+              <select class="form-select" id="select_comuna" name="select_comuna" required>
+                <option selected disabled value="">seleccione ciudad</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">
+                porfavor seleccione una comuna
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label for="select_sexo" class="form-label">SEXO</label>
+              <select class="form-select" id="select_sexo" name="select_sexo" required>
+                <option selected disabled value="">SELECCIONE...</option>
+                <option>...</option>
+              </select>
+              <div class="invalid-feedback">
+                porfavor ingrese una opcion
+              </div>
+            </div>
+
+            <div class="col-12">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                  Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                  You must agree before submitting.
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer col-12">
+              <button class="btn btn-primary" type="submit">REGISTRARSE</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
