@@ -9,14 +9,29 @@
         </div>
         <div class="modal-body">
 
-          <form  action="" method="post" class="row g-3 needs-validation" >
-            <!-- {% csrf_token %}
-            {{ form.as_p }} -->
+          <form  action="" method="POST" class="row g-3 needs-validation" >
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+
+            <div class="col-md-6">
+              <label for="inpt_run" class="form-label">RUN</label>
+              <input type="text" class="form-control" id="inpt_run" name="inpt_run" placeholder="Jorge" required>
+              <div class="valid-feedback">
+                Campo requerido
+              </div>
+            </div>
             <div class="col-md-6">
               <label for="inpt_nombre" class="form-label">NOMBRE</label>
               <input type="text" class="form-control" id="inpt_nombre" name="inpt_nombre" placeholder="Jorge" required>
               <div class="valid-feedback">
                 Campo requerido
+              </div>
+              <div class="col-md-6">
+                <label for="inpt_snombre" class="form-label">SEGUNDO NOMBRE</label>
+                <input type="text" class="form-control" id="inpt_snombre" name="inpt_nombre" placeholder="Jorge" required>
+                <div class="valid-feedback">
+                  Campo requerido
+                </div>
               </div>
             </div>
             <div class="col-md-6">
@@ -26,6 +41,15 @@
                 Campo requerido
               </div>
             </div>
+
+            <div class="col-md-6">
+              <label for="inpt_sapellido" class="form-label">SEGUNDO APELLIDO</label>
+              <input type="text" class="form-control" id="inpt_sapellido" name="inpt_sapellido" placeholder="Jorge" required>
+              <div class="valid-feedback">
+                Campo requerido
+              </div>
+            </div>
+
             <div class="col-md-6">
               <label for="inpt_correo" class="form-label">Correo electronico</label>
               <div class="input-group has-validation">
@@ -37,8 +61,17 @@
               </div>
             </div>
 
+            <div class="col-md-6">
+              <label for="inpt_telefono" class="form-label">TELEFONO</label>
+              <input type="text" class="form-control" id="inpt_telefono" name="inpt_telefono" placeholder="Jorge" required>
+              <div class="valid-feedback">
+                Campo requerido
+              </div>
+            </div>
+
+
               <div class="col-md-6">
-                <label for="inpt_contrasena" class="form-label">CONRASEÑA</label>
+                <label for="inpt_contrasena" class="form-label">direccion</label>
                 <input type="password" class="form-control" id="inpt_contrasena" name="inpt_contrasena" required>
                 <div class="valid-feedback">
                   Contraseña requerida
@@ -59,8 +92,8 @@
             </div>
 
             <div class="col-md-6">
-              <label for="select_comuna" class="form-label">COMUNA</label>
-              <select class="form-select" id="select_comuna" name="select_comuna" required>
+              <label for="select_region" class="form-label">region</label>
+              <select class="form-select" id="select_region" name="select_region" required>
                 <option selected disabled value="">seleccione ciudad</option>
                 <option>...</option>
               </select>
@@ -80,6 +113,15 @@
               </div>
             </div>
 
+
+            <div class="col-md-6">
+              <label for="inpt_fecha_nac" class="form-label">fecha_nac</label>
+              <input type="password" class="form-control" id="inpt_fecha_nac" name="inpt_fecha_nac" required>
+              <div class="valid-feedback">
+                Contraseña requerida
+              </div>
+            </div>
+
             <div class="col-12">
               <div class="form-check">
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -91,10 +133,22 @@
                 </div>
               </div>
             </div>
+            <!-- {{ usuario_form.as_p }} -->
             <div class="modal-footer col-12">
-              <button class="btn btn-primary" type="submit">REGISTRARSE</button>
+              <button type="button" class="btn btn-primary" id="btn-registro">REGISTRARSE</button>
             </div>
           </form>
+
+          {% block content %}
+   <div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ usuario_form.as_p }}
+        <button type="submit">Crear</button>
+
+    </form>
+   </div>
+{% endblock content %}
 
         </div>
       </div>

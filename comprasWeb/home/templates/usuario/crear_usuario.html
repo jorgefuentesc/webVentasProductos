@@ -1,0 +1,12 @@
+{% extends 'home/inicio.html' %}
+{% load static %}
+{% block content %}
+   <div>
+    <form method="POST">
+        {% csrf_token %}
+        {{ usuario_form.as_p }}
+        <button type="submit">Crear</button>
+
+    </form>
+   </div>
+{% endblock content %}

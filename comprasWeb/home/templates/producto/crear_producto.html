@@ -1,0 +1,55 @@
+{% extends 'home/inicio.html' %}
+
+{% load static %}
+
+
+{% block contenido %}
+
+<form class="row g-3">
+  
+  <div class="col-md-6">
+    <label for="prc_nombre" class="form-label">Nombre del producto</label>
+    <input type="text" class="form-control" id="prc_nombre" name="prc_nombre">
+  </div>
+  <div class="col-md-6">
+    <label for="prc_precio" class="form-label">Precio</label>
+    <input type="text" class="form-control" id="prc_precio" name="prc_precio">
+  </div>
+  <div class="col-12">
+    <label for="prc_descripcion" class="form-label">Descripcion</label>
+    <input type="text" class="form-control" id="prc_descripcion" name="prc_descripcion">
+  </div>
+  <!-- <div class="col-12">
+    <label for="inputAddress2" class="form-label">Dirección 2</label>
+    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+  </div>
+  <div class="col-md-6">
+    <label for="inputCity" class="form-label">Ciudad</label>
+    <input type="text" class="form-control" id="inputCity">
+  </div>
+  <div class="col-md-4">
+    <label for="inputState" class="form-label">Estado</label>
+    <select id="inputState" class="form-select">
+      <option selected>Elige...</option>
+      <option>...</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label for="inputZip" class="form-label">Código postal</label>
+    <input type="text" class="form-control" id="inputZip">
+  </div> -->
+  <!-- <div class="col-12">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Verifícame
+      </label>
+    </div>
+  </div> -->
+  <div class="col-12">
+    <button type="button" class="btn btn-primary"  id="btn_publicar" name="btn_publicar">Publicar</button>
+  </div>
+</form>
+
+{% endblock contenido %}
+
