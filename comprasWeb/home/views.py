@@ -115,7 +115,7 @@ def productos(request):
     else:
         productos = Producto.objects.filter(prod_vigencia = True)
         prodrelated = Producto.objects.all().select_related("categoria_id")
-    paginator = Paginator(prodrelated,2)
+    paginator = Paginator(prodrelated,4)
     page = request.GET.get('page')
     prodrelated = paginator.get_page(page)
     context={
