@@ -1,270 +1,863 @@
-{% load static%}
-<!DOCTYPE html>
-<html lang="es">
-  <head>
+{% load static %}
+
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{% block titulo %}Blog Mercado web{% endblock titulo %}</title>
+    <title>{% block titulo %} Mercado web{% endblock titulo %}</title>
+    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
 
-    <!-- Custom fonts for this template -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pixeden-stroke-7-icon@1.2.3/pe-icon-7-stroke/dist/pe-icon-7-stroke.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.2.0/css/flag-icon.min.css">
+    <link rel="stylesheet" href="{% static 'css/index/cs-skin-elastic.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index/style.css' %}">
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'css/clean-blog.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
-  </head>
+   <style>
+    #weatherWidget .currentDesc {
+        color: #ffffff!important;
+    }
+        .traffic-chart {
+            min-height: 335px;
+        }
+        #flotPie1  {
+            height: 150px;
+        }
+        #flotPie1 td {
+            padding:3px;
+        }
+        #flotPie1 table {
+            top: 20px!important;
+            right: -10px!important;
+        }
+        .chart-container {
+            display: table;
+            min-width: 270px ;
+            text-align: left;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        #flotLine5  {
+             height: 105px;
+        }
 
-  <body>
+        #flotBarChart {
+            height: 150px;
+        }
+        #cellPaiChart{
+            height: 160px;
+        }
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Mercado web</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home:inicio' %}">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home:categorias' %}">Categorias</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'home:productos' %}">Productos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Videojuegos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tecnología</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tutoriales</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle"  id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                Usuario
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="#">LogIn</a></li>
-                <li><a class="dropdown-item" id="mdl_registrar">Register</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">LogOut</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- Nav bars futuros  -->
+    </style>
+</head>
+
+<body>
+    <!-- Left Panel -->
+    <aside id="left-panel" class="left-panel">
+        <nav class="navbar navbar-expand-sm navbar-default">
+            <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="{% url 'home:inicio' %}"><i class="menu-icon fa fa-laptop"></i>INICIO </a>
+                    </li>
+                    <li class="menu-title">OPCIONES</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Categorias</a>
+                        <ul class="sub-menu children dropdown-menu">    
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home:categorias' %}">TODAS</a></li>
+
+                        
+
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Tables</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="fa fa-table"></i><a href="tables-basic.html">Basic Table</a></li>
+                            <li><i class="fa fa-table"></i><a href="tables-data.html">Data Table</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Productos</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-th"></i> <a href="{% url 'home:productos' %}">TODOS</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="{% url 'home:crear_producto' %}">Publicar producto</a></li>
+                            <li><i class="menu-icon fa fa-th"></i><a href="#">Ver publicaciones</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- <li class="menu-title">Icons</li>   /.menu-title 
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
+                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="widgets.html"> <i class="menu-icon ti-email"></i>Widgets </a>
+                    </li>
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-bar-chart"></i>Charts</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-line-chart"></i><a href="charts-chartjs.html">Chart JS</a></li>
+                            <li><i class="menu-icon fa fa-area-chart"></i><a href="charts-flot.html">Flot Chart</a></li>
+                            <li><i class="menu-icon fa fa-pie-chart"></i><a href="charts-peity.html">Peity Chart</a></li>
+                        </ul>
+                    </li> -->
+
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-map-o"></i><a href="maps-gmap.html">Google Maps</a></li>
+                            <li><i class="menu-icon fa fa-street-view"></i><a href="maps-vector.html">Vector Maps</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-title">Registro / Inicio</li><!-- /.menu-title -->
+                    <li class="menu-item-has-children dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-glass"></i>Usuario</a>
+                        <ul class="sub-menu children dropdown-menu">
+                            <li><i class="menu-icon fa fa-sign-in"></i><a href="page-login.html">Iniciar</a></li>
+                            <li ><i class="menu-icon fa fa-sign-in"></i><a id="mdl_registrar">Registrar</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </aside>
     {% block modal %}
-
-    {% endblock modal %} 
-    <!-- Page Header -->
-    <header class="masthead">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <div class="site-heading">
-              <h2>{% block titulo_principal %}Mercado web{% endblock titulo_principal %}</h2>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-  {% block barra_busqueda %}  
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 search">
-          <form method="get">
-              <div id="custom-search-input">
-                <div class="input-group col-md-12">
-                  <input type="text" class="form-control" placeholder="Buscar..." name="buscar" id="buscar" value = "{{ request.GET.buscar }}">
-                  <span class="input-group-list">
-                    <i class="icon icon-search"></i>
-                    <button type="submit" class="boton btn-success">Buscar</button>
-                  </span>
+{% endblock modal %}
+    <!-- /#left-panel -->
+    <!-- Right Panel -->
+    <div id="right-panel" class="right-panel">
+        <!-- Header-->
+        <header id="header" class="header">
+            <div class="top-left">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
+                    <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                    <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
-              </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  {% endblock barra_busqueda %}
-    <!-- Main Content -->
-    {% block clases_container_contenido %}
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          {% block contenido %}
+            </div>
+            <div class="top-right">
+                <div class="header-menu">
+                    <div class="header-left">
+                        <button class="search-trigger"><i class="fa fa-search"></i></button>
+                        <div class="form-inline">
+                            <form class="search-form">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
+                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
+                            </form>
+                        </div>
 
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aperiam, quo beatae nemo similique impedit asperiores, ex labore, esse libero fuga facilis voluptatum ducimus debitis iusto explicabo consequatur porro! Quam, voluptas.
-          Suscipit dicta veniam aut minus id ad rerum dolores et, voluptatibus sit, molestias magnam deserunt reprehenderit ipsum esse voluptate porro numquam. A vero labore fugit vitae suscipit et distinctio aspernatur?
-          Ad dolorum mollitia molestias tempore itaque quod pariatur ab autem doloribus, quos ratione debitis minima beatae veritatis dolores sapiente magnam odit distinctio nisi ea eligendi commodi alias. Porro, aliquid voluptatem.
-          Accusantium cupiditate voluptates dolores pariatur. Quo corporis id inventore non voluptas, vero adipisci, voluptatem ducimus ipsum facere nulla omnis laudantium eum, placeat sed veritatis veniam eos! Tempora a eveniet blanditiis?
-          Maxime assumenda accusantium earum laborum, rerum aliquid facere commodi dolor! Harum hic velit recusandae cum id rem reprehenderit? Voluptatibus reiciendis alias sequi architecto quis laboriosam optio illo cum voluptatum vel.
-          Debitis commodi fugiat quisquam temporibus accusantium! Voluptates, saepe. Esse corporis beatae inventore exercitationem quas, maiores, velit nulla eos quam similique pariatur in ducimus amet vel quis repudiandae. At, maxime alias!
-          Numquam eos eveniet molestiae voluptatibus repudiandae ipsa alias fuga deleniti ipsum vitae, nam minus adipisci at magni delectus animi ex voluptatem vero nihil natus corrupti harum tempore et. Aliquam, sed.
-          Modi architecto, sit suscipit in possimus aspernatur repellat iusto pariatur iste sapiente aliquid aliquam mollitia magnam! Quis quidem nemo porro magni, sed adipisci earum maiores quos in magnam tempora delectus.
-          Aut quis non nostrum tempora possimus dolorem ab rem doloribus sapiente sed aperiam totam maxime, voluptates eius dolores iste, nisi distinctio odit molestiae! Cumque cum nobis est libero nihil aut.
-          Iure, nisi itaque debitis excepturi atque distinctio unde quia illum animi aliquam nihil eius. Totam minus veritatis aliquid enim! Rem quam eius, suscipit blanditiis saepe natus temporibus maxime eveniet iusto.
-          Sit, repudiandae repellat? Error quas veritatis provident, dignissimos recusandae illo, magnam dolores distinctio optio exercitationem ipsum consectetur suscipit reprehenderit reiciendis ratione quasi facilis quidem id? Nobis sunt voluptates officiis labore.
-          Adipisci quasi molestiae, ipsa corrupti vitae numquam sequi cumque cupiditate voluptas nesciunt laboriosam quod. Corporis sapiente, assumenda deserunt quam accusamus adipisci officiis laborum. Repudiandae ab impedit, rem blanditiis doloremque eum.
-          Ratione vero quibusdam laboriosam, est aliquid omnis iusto quae veritatis amet eligendi. Voluptates animi libero nihil nemo sed rem excepturi voluptas suscipit iusto impedit voluptatem, vero sapiente repudiandae fugiat vitae!
-          Eaque praesentium explicabo, illum soluta odio quod voluptatum sunt sit impedit nam odit porro natus aut? Repudiandae beatae suscipit voluptas voluptatum velit mollitia qui, molestias ratione eius aspernatur vel distinctio?
-          Iste cum aspernatur ipsa animi perspiciatis unde, quae facere quos reprehenderit quo ullam temporibus commodi error dolore quibusdam, obcaecati nemo quas. Corrupti consectetur cupiditate error inventore alias reprehenderit, accusantium incidunt?
-          Est, itaque. Modi, aliquid, possimus, molestias beatae sint sapiente qui neque ipsam reprehenderit nemo architecto commodi culpa debitis repudiandae maiores soluta ipsa facere aliquam? A blanditiis fugiat adipisci mollitia cupiditate?
-          Cumque minima in, eligendi magni provident, molestias exercitationem et maiores iusto earum optio, laudantium similique pariatur. Corporis cumque enim quaerat? Nulla aliquid molestiae deserunt adipisci est obcaecati porro fuga illum.
-          Ducimus veritatis doloremque repudiandae tenetur mollitia modi voluptatum, quisquam corporis saepe voluptate sint, odio est nihil! Odit libero dolorem officia magni non ipsa molestias perspiciatis temporibus delectus beatae! Beatae, quos!
-          Consectetur sapiente aliquid asperiores deleniti? Veniam laborum eligendi veritatis enim id est quo voluptatum magni assumenda, reiciendis obcaecati cupiditate neque maiores natus! Atque soluta illo, culpa sequi deleniti doloribus repellendus!
-          Quos ad in, consequuntur adipisci ratione iste sint nobis exercitationem aspernatur nulla natus enim quas explicabo pariatur a nostrum accusantium ab? Molestiae corporis vel harum iste, officia qui amet beatae.
-          Quam modi ipsam a quasi! Impedit autem illum accusantium nam expedita placeat laboriosam eveniet necessitatibus quis corporis molestias, unde atque adipisci perspiciatis vitae illo debitis labore repudiandae hic perferendis consequatur!
-          Facilis voluptatibus odio quia impedit vitae, amet modi, reiciendis qui accusamus maxime excepturi suscipit inventore sed quae voluptatem omnis quidem, rerum aperiam eligendi obcaecati quos debitis! Officia in eligendi qui?
-          Error consequuntur corrupti odit nulla, sapiente ipsa, eligendi officia unde neque cum soluta similique sed accusantium ea et id, animi aliquam iusto sunt quod odio! Cupiditate sapiente numquam maiores dolores.
-          Sit, sed. Qui iusto cupiditate ipsum ex laboriosam reiciendis! Quo unde, praesentium blanditiis velit modi quisquam ratione ad architecto voluptate minus, animi magnam sunt harum, id debitis iusto doloremque iste?
-          Repellendus animi earum officia sunt recusandae, vitae modi sit, nulla laboriosam saepe atque perferendis veniam. Suscipit dignissimos odit repellat deserunt blanditiis mollitia quam neque magni cupiditate, at quaerat exercitationem culpa!
-          Commodi perferendis, ad corporis asperiores dolor iure repudiandae odit temporibus ab labore exercitationem aut minus quidem alias fugit mollitia vero atque incidunt nam suscipit vitae! Magnam veritatis sapiente corrupti inventore?
-          Nesciunt, totam laborum voluptates obcaecati neque eaque? Fugiat illo, explicabo enim quia maiores velit consectetur iure soluta ipsum quos fugit eaque, aut nulla maxime ullam, tempora molestiae. Repellat, aliquid soluta!
-          Consectetur, mollitia veritatis adipisci cumque porro omnis commodi iusto id facere quaerat? Hic at nulla perferendis sed delectus magni quasi, cum inventore, vel iure suscipit assumenda non quia omnis enim!
-          Iusto, obcaecati! Suscipit alias repudiandae corporis quos similique velit cupiditate, voluptate voluptates tempora maxime veritatis assumenda deserunt, sunt deleniti nobis sit eos saepe iure quam? Laboriosam soluta facilis aliquam magnam!
-          Eius dolores porro, laboriosam beatae eveniet iusto excepturi mollitia cumque, animi praesentium voluptatibus harum aspernatur odio architecto temporibus. Maxime deserunt, autem saepe cumque facilis voluptas perspiciatis quaerat temporibus illum ipsa.
-          <!-- {% if posts %}
-            {% for post in posts %}
-                <div class="post-preview">
-                  <a href="#">
-                    <h2 class="post-title">
-                      {{ post.titulo }}
-                    </h2>
-                    <h3 class="post-subtitle">
-                      {{ post.descripcion }}
-                    </h3>
-                  </a>
-                  <p class="post-meta">Escrito por
-                   <strong>{{ post.autor }}</strong>   el
-                    {{ post.fecha_creacion }}</p>
+                        <div class="dropdown for-notification">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-bell"></i>
+                                <span class="count bg-danger">3</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="notification">
+                                <p class="red">You have 3 Notification</p>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-check"></i>
+                                    <p>Server #1 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-info"></i>
+                                    <p>Server #2 overloaded.</p>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <i class="fa fa-warning"></i>
+                                    <p>Server #3 overloaded.</p>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="dropdown for-message">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-envelope"></i>
+                                <span class="count bg-primary">4</span>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="message">
+                                <p class="red">You have 4 Mails</p>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/1.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jonathan Smith</span>
+                                        <span class="time float-right">Just now</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/2.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Jack Sanders</span>
+                                        <span class="time float-right">5 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/3.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Cheryl Wheeler</span>
+                                        <span class="time float-right">10 minutes ago</span>
+                                        <p>Hello, this is an example msg</p>
+                                    </div>
+                                </a>
+                                <a class="dropdown-item media" href="#">
+                                    <span class="photo media-left"><img alt="avatar" src="images/avatar/4.jpg"></span>
+                                    <div class="message media-body">
+                                        <span class="name float-left">Rachel Santos</span>
+                                        <span class="time float-right">15 minutes ago</span>
+                                        <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-area dropdown float-right">
+                        <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="user-avatar rounded-circle" src="images/admin.jpg" alt="User Avatar">
+                        </a>
+
+                        <div class="user-menu dropdown-menu">
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
+
+                            <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
+
+                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                        </div>
+                    </div>
+
                 </div>
-                <hr>
-            {% endfor %} -->
-          {% else %}
-            <h1>No existen post registrados!</h1>
-          {% endif %}
-          {% endblock contenido %}
-
-        </div>
-      </div>
-    </div>
-    {% endblock clases_container_contenido %}
-
-    <div class="row">
-      <div class="col-md-12 col-lg-12 col-mg-12 col-mx-12">
-        <div class="col-md-6 float-left">
-          {% if productos.has_previous %}
-            <div class="clearfix">
-              <a href="?page={{ productos.previous_page_number }} {% if request.GET.search %} &q={{ request.GET.search }} {% endif %}" class="btn btn-primaty float-left"> Anterior</a>
             </div>
-          {% endif %}
-        </div>
-        <div class="col-md-6 float-right">
-          {% if productos.has_next %}
-            <div class="clearfix">
-              <a href="?page={{ productos.next_page_number }} " class="btn btn-primaty float-right"> Siguiente</a>
+        </header>
+
+        <!-- /#header -->
+        <!-- Content -->
+        <div class="content">
+            <!-- Animated -->
+            <div class="animated fadeIn">
+                <!-- Widgets  -->
+                <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-1">
+                                        <i class="pe-7s-cash"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text">$<span class="count">23569</span></div>
+                                            <div class="stat-heading">Revenue</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-2">
+                                        <i class="pe-7s-cart"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">3435</span></div>
+                                            <div class="stat-heading">Sales</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-3">
+                                        <i class="pe-7s-browser"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">349</span></div>
+                                            <div class="stat-heading">Templates</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="stat-widget-five">
+                                    <div class="stat-icon dib flat-color-4">
+                                        <i class="pe-7s-users"></i>
+                                    </div>
+                                    <div class="stat-content">
+                                        <div class="text-left dib">
+                                            <div class="stat-text"><span class="count">2986</span></div>
+                                            <div class="stat-heading">Clients</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /Widgets -->
+                <!--  Traffic  -->
+                <div class="row">
+
+                    <div class="col-lg-12">
+
+                        <div class="card">
+
+                            
+                            <div class="card-body" style="text-align:center ;">
+                                {% block tituloContenido %}
+                                <h4 class="box-title" >Trafficcc </h4>
+                                {% endblock tituloContenido %}
+                            </div>
+                            
+                            <div class="row" style="margin: auto;">
+                                <div class="col-lg-12">
+                                    {% block contenido %}
+
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur veniam corporis laudantium eum voluptates iusto veritatis ex quis molestiae dolore, amet animi voluptatum explicabo culpa nobis illo quod delectus blanditiis.
+                                    Enim, deleniti debitis! Dolorem aut laboriosam mollitia. Hic, tenetur aperiam. Nulla quos nemo cum perferendis id aliquam possimus. Voluptas voluptate repudiandae voluptatibus similique maxime inventore? Perferendis reiciendis ullam facilis corporis!
+                                    Necessitatibus omnis laudantium ea aliquid mollitia alias asperiores, fugit saepe illum, quisquam reiciendis? Commodi distinctio, unde culpa est necessitatibus recusandae delectus natus accusantium doloremque, qui tempora, ut cupiditate molestias officia.
+                                    Alias vel quidem accusantium vitae doloribus. Voluptates nobis quo aspernatur aperiam quaerat fugit perferendis porro excepturi nemo totam minima deserunt cumque, dolores quasi nostrum deleniti asperiores iste sapiente numquam. Fugit!
+                                    Deserunt voluptatibus est totam, obcaecati architecto atque labore nesciunt odio voluptas cupiditate ullam consequuntur fugiat repellat aliquam sit libero tenetur repellendus nam officiis. Voluptates fugit commodi voluptatibus fuga assumenda quisquam.</p>
+                                    
+                                    {% endblock contenido %}
+                                </div>
+
+
+                                <!-- <div class="col-lg-4">
+                                    <div class="card-body">
+                                        <div class="progress-box progress-1">
+                                            <h4 class="por-title">Visits</h4>
+                                            <div class="por-txt">96,930 Users (40%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Bounce Rate</h4>
+                                            <div class="por-txt">3,220 Users (24%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Unique Visitors</h4>
+                                            <div class="por-txt">29,658 Users (60%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                        <div class="progress-box progress-2">
+                                            <h4 class="por-title">Targeted  Visitors</h4>
+                                            <div class="por-txt">99,658 Users (90%)</div>
+                                            <div class="progress mb-2" style="height: 5px;">
+                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div>
+                                    </div>  /.card-body 
+                                </div> -->
+
+
+                            </div> <!-- /.row -->
+                            <div class="card-body"></div>
+                        </div>
+                    </div><!-- /# column -->
+                </div>
+                <!--  /Traffic -->
+                <div class="clearfix"></div>
+                <!-- Orders -->
+                
+                <!-- /.orders -->
+                <!-- To Do and Live Chat -->
+                <!-- <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title box-title">To Do List</h4>
+                                <div class="card-content">
+                                    <div class="todo-list">
+                                        <div class="tdl-holder">
+                                            <div class="tdl-content">
+                                                <ul>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox"><i class="check-box"></i><span>Conveniently fabricate interactive technology for ....</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox"><i class="check-box"></i><span>Creating component page</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Follow back those who follow you</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Design One page theme</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+
+                                                    <li>
+                                                        <label>
+                                                            <input type="checkbox" checked><i class="check-box"></i><span>Creating component page</span>
+                                                            <a href='#' class="fa fa-times"></a>
+                                                            <a href='#' class="fa fa-pencil"></a>
+                                                            <a href='#' class="fa fa-check"></a>
+                                                        </label>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> /.todo-list 
+                                </div>
+                            </div>  /.card-body 
+                        </div> /.card 
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title box-title">Live Chat</h4>
+                                <div class="card-content">
+                                    <div class="messenger-box">
+                                        <ul>
+                                            <li>
+                                                <div class="msg-received msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/64-1.jpg" alt="">
+                                                       <div class="send-time">11.11 am</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                John Doe
+                                                            </div>
+                                                            <div class="meg">
+                                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis sunt placeat velit ad reiciendis ipsam
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div> /.msg-received 
+                                            </li>
+                                            <li>
+                                                <div class="msg-sent msg-container">
+                                                    <div class="avatar">
+                                                       <img src="images/avatar/64-2.jpg" alt="">
+                                                       <div class="send-time">11.11 am</div>
+                                                    </div>
+                                                    <div class="msg-box">
+                                                        <div class="inner-box">
+                                                            <div class="name">
+                                                                John Doe
+                                                            </div>
+                                                            <div class="meg">
+                                                                Hay how are you doing?
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>< /.msg-sent 
+                                            </li>
+                                        </ul>
+                                        <div class="send-mgs">
+                                            <div class="yourmsg">
+                                                <input class="form-control" type="text">
+                                            </div>
+                                            <button class="btn msg-send-btn">
+                                                <i class="pe-7s-paper-plane"></i>
+                                            </button>
+                                        </div>
+                                    </div>< /.messenger-box 
+                                </div>
+                            </div>  /.card-body 
+                        </div> /.card 
+                    </div>
+                </div> -->
+                <!-- /To Do and Live Chat -->
+                <!-- Calender Chart Weather  -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- <h4 class="box-title">Chandler</h4> -->
+                                <div class="calender-cont widget-calender">
+                                    <div id="calendar"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.card -->
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card ov-h">
+                            <div class="card-body bg-flat-color-2">
+                                <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
+                            </div>
+                            <div id="cellPaiChart" class="float-chart"></div>
+                        </div><!-- /.card -->
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card weather-box">
+                            <h4 class="weather-title box-title">Weather</h4>
+                            <div class="card-body">
+                                <div class="weather-widget">
+                                    <div id="weather-one" class="weather-one"></div>
+                                </div>
+                            </div>
+                        </div><!-- /.card -->
+                    </div>
+                </div>
+                <!-- /Calender Chart Weather -->
+                <!-- Modal - Calendar - Add New Event -->
+                <div class="modal fade none-border" id="event-modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><strong>Add New Event</strong></h4>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success save-event waves-effect waves-light">Create event</button>
+                                <button type="button" class="btn btn-danger delete-event waves-effect waves-light" data-dismiss="modal">Delete</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /#event-modal -->
+                <!-- Modal - Calendar - Add Category -->
+                <div class="modal fade none-border" id="add-category">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title"><strong>Add a category </strong></h4>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Category Name</label>
+                                            <input class="form-control form-white" placeholder="Enter name" type="text" name="category-name"/>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Choose Category Color</label>
+                                            <select class="form-control form-white" data-placeholder="Choose a color..." name="category-color">
+                                                <option value="success">Success</option>
+                                                <option value="danger">Danger</option>
+                                                <option value="info">Info</option>
+                                                <option value="pink">Pink</option>
+                                                <option value="primary">Primary</option>
+                                                <option value="warning">Warning</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- /#add-category -->
             </div>
-          {% endif %}
+            <!-- .animated -->
         </div>
-          
-        
-      </div>
+        <!-- /.content -->
+        <div class="clearfix"></div>
+        <!-- Footer -->
+        <footer class="site-footer">
+            <div class="footer-inner bg-white">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; 2018 Ela Admin
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        Designed by <a href="/">Colorlib</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- /.site-footer -->
     </div>
+    <!-- /#right-panel -->
 
-   <!-- <div class="row">
-     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-       <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6 float-left">
-         {% if posts.has_previous %}
-              <div class="clearfix">
-                <a href="?page={{ posts.previous_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}" class="btn btn-primary float-left">Anterior</a>
-              </div>
-         {% endif %}
-       </div>
-     </div>
-     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
-       <div class="col-md-6 col-sm-6 col-lg-6 col-xs-6  float-right">
-         {% if posts.has_next %}
-              <div class="clearfix">
-                <a href="?page={{ posts.next_page_number }}{% if request.GET.search %}&q={{ request.GET.search }}{% endif %}" class="btn btn-primary float-right">Siguiente</a>
-              </div>
-         {% endif %}
-       </div>
-     </div>
-   </div> -->
-
-
-
-    <hr>
-
-    <!-- Footer -->
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <a href="#">
-                  <span class="fa-stack fa-lg">
-                    <i class="fas fa-circle fa-stack-2x"></i>
-                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                  </span>
-                </a>
-              </li>
-            </ul>
-            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
+    <!-- Scripts -->
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-    <script src="{% static 'js/test.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
+
     {% block script %}
     {% endblock script %}
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="{% static 'js/home/main.js' %}"></script>
+
     
 
-    <!-- Custom scripts for this template -->
-    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+    <!--  Chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.7.3/dist/Chart.bundle.min.js"></script>
 
-  </body>
+    <!--Chartist Chart-->
+    <script src="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartist-plugin-legend@0.6.2/chartist-plugin-legend.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
+    <script src="assets/js/init/weather-init.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+    <script src="{% static 'js/home/init/fullcalendar-init.js' %}"></script>
+
+    <!--Local Stuff-->
+    <script>
+        jQuery(document).ready(function($) {
+            "use strict";
+
+            // Pie chart flotPie1
+            var piedata = [
+                { label: "Desktop visits", data: [[1,32]], color: '#5c6bc0'},
+                { label: "Tab visits", data: [[1,33]], color: '#ef5350'},
+                { label: "Mobile visits", data: [[1,35]], color: '#66bb6a'}
+            ];
+
+            $.plot('#flotPie1', piedata, {
+                series: {
+                    pie: {
+                        show: true,
+                        radius: 1,
+                        innerRadius: 0.65,
+                        label: {
+                            show: true,
+                            radius: 2/3,
+                            threshold: 1
+                        },
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+            });
+            // Pie chart flotPie1  End
+            // cellPaiChart
+            var cellPaiChart = [
+                { label: "Direct Sell", data: [[1,65]], color: '#5b83de'},
+                { label: "Channel Sell", data: [[1,35]], color: '#00bfa5'}
+            ];
+            $.plot('#cellPaiChart', cellPaiChart, {
+                series: {
+                    pie: {
+                        show: true,
+                        stroke: {
+                            width: 0
+                        }
+                    }
+                },
+                legend: {
+                    show: false
+                },grid: {
+                    hoverable: true,
+                    clickable: true
+                }
+
+            });
+            // cellPaiChart End
+            // Line Chart  #flotLine5
+            var newCust = [[0, 3], [1, 5], [2,4], [3, 7], [4, 9], [5, 3], [6, 6], [7, 4], [8, 10]];
+
+            var plot = $.plot($('#flotLine5'),[{
+                data: newCust,
+                label: 'New Data Flow',
+                color: '#fff'
+            }],
+            {
+                series: {
+                    lines: {
+                        show: true,
+                        lineColor: '#fff',
+                        lineWidth: 2
+                    },
+                    points: {
+                        show: true,
+                        fill: true,
+                        fillColor: "#ffffff",
+                        symbol: "circle",
+                        radius: 3
+                    },
+                    shadowSize: 0
+                },
+                points: {
+                    show: true,
+                },
+                legend: {
+                    show: false
+                },
+                grid: {
+                    show: false
+                }
+            });
+            // Line Chart  #flotLine5 End
+            // Traffic Chart using chartist
+            if ($('#traffic-chart').length) {
+                var chart = new Chartist.Line('#traffic-chart', {
+                  labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                  series: [
+                  [0, 18000, 35000,  25000,  22000,  0],
+                  [0, 33000, 15000,  20000,  15000,  300],
+                  [0, 15000, 28000,  15000,  30000,  5000]
+                  ]
+              }, {
+                  low: 0,
+                  showArea: true,
+                  showLine: false,
+                  showPoint: false,
+                  fullWidth: true,
+                  axisX: {
+                    showGrid: true
+                }
+            });
+
+                chart.on('draw', function(data) {
+                    if(data.type === 'line' || data.type === 'area') {
+                        data.element.animate({
+                            d: {
+                                begin: 2000 * data.index,
+                                dur: 2000,
+                                from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                                to: data.path.clone().stringify(),
+                                easing: Chartist.Svg.Easing.easeOutQuint
+                            }
+                        });
+                    }
+                });
+            }
+            // Traffic Chart using chartist End
+            //Traffic chart chart-js
+            if ($('#TrafficChart').length) {
+                var ctx = document.getElementById( "TrafficChart" );
+                ctx.height = 150;
+                var myChart = new Chart( ctx, {
+                    type: 'line',
+                    data: {
+                        labels: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul" ],
+                        datasets: [
+                        {
+                            label: "Visit",
+                            borderColor: "rgba(4, 73, 203,.09)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(4, 73, 203,.5)",
+                            data: [ 0, 2900, 5000, 3300, 6000, 3250, 0 ]
+                        },
+                        {
+                            label: "Bounce",
+                            borderColor: "rgba(245, 23, 66, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(245, 23, 66,.5)",
+                            pointHighlightStroke: "rgba(245, 23, 66,.5)",
+                            data: [ 0, 4200, 4500, 1600, 4200, 1500, 4000 ]
+                        },
+                        {
+                            label: "Targeted",
+                            borderColor: "rgba(40, 169, 46, 0.9)",
+                            borderWidth: "1",
+                            backgroundColor: "rgba(40, 169, 46, .5)",
+                            pointHighlightStroke: "rgba(40, 169, 46,.5)",
+                            data: [1000, 5200, 3600, 2600, 4200, 5300, 0 ]
+                        }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        tooltips: {
+                            mode: 'index',
+                            intersect: false
+                        },
+                        hover: {
+                            mode: 'nearest',
+                            intersect: true
+                        }
+
+                    }
+                } );
+            }
+            //Traffic chart chart-js  End
+            // Bar Chart #flotBarChart
+            $.plot("#flotBarChart", [{
+                data: [[0, 18], [2, 8], [4, 5], [6, 13],[8,5], [10,7],[12,4], [14,6],[16,15], [18, 9],[20,17], [22,7],[24,4], [26,9],[28,11]],
+                bars: {
+                    show: true,
+                    lineWidth: 0,
+                    fillColor: '#ffffff8a'
+                }
+            }], {
+                grid: {
+                    show: false
+                }
+            });
+            // Bar Chart #flotBarChart End
+        });
+    </script>
+</body>
 </html>

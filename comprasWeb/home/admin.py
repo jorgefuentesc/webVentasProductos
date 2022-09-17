@@ -10,8 +10,8 @@ class UsuarioRerourse(resources.ModelResource):
 
 
 class UsuarioAmin(ImportExportModelAdmin,admin.ModelAdmin): #Formato para listar en columnas los datos segun nombres que deben ser iguales que en el modelo
-    list_display = ('usuario_id','primer_nombre','primer_apellido','correo_electronico','telefono')
-    search_fields = ('primer_nombre','primer_apellido','correo_electronico','telefono')
+    list_display = ('usuario_id','nombres','apellidos','correo_electronico','telefono')
+    search_fields = ['nombres','apellidos','correo_electronico','telefono']
     resource_class = UsuarioRerourse
 
 class ProductoAdmin(admin.ModelAdmin):
@@ -31,4 +31,4 @@ admin.site.register(Producto, ProductoAdmin)
 admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Pedido, PedidoAmin)
 admin.site.register(Usuario, UsuarioAmin)
-# Register your models here.
+

@@ -42,18 +42,17 @@
                     {% else %}
                     <h2>No existen productos registrados actualmente. :(</h2>
                     {% endif %}
+
+                    <div style="text-align-last:center; margin-top: 100px;">
+                        <button class=""><a href="{% url 'home:crear_producto' %}">Publicar producto</a></button>
+                    </div>
                     
                 {% endblock contenido %}
             </div>
             
         </div>
-        <div style="text-align-last:center; margin-top: 100px;">
-            <button class=""><a href="{% url 'home:crear_producto' %}">Publicar producto</a></button>
-        </div>
+        
         
     </div>
 
 {% endblock clases_container_contenido %}
-
-
-

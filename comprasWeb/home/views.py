@@ -1,5 +1,4 @@
 
-from urllib import response
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import get_object_or_404
@@ -7,16 +6,19 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 from .models import Categoria, Producto, Usuario
-from .forms import UsuarioForm
+# from django.contrib import messages
+# from django.views import View
 
 
 
 
-
+def nwindex(request):
+    return render(request, 'home/nwindex.html')
+    
 # Create your views here.
 def inicio(request):
-    queryset = request.GET.get('buscar')
-    print(queryset, "ssssss")
+    # queryset = request.GET.get('buscar')
+    # print(queryset, "ssssss")
     return render(request, 'home/inicio.html')
 
 
@@ -28,16 +30,27 @@ def inicio(request):
 #         pass
         
 
-def CrearUsuario(request):
-    if request.method == 'POST':
-        usuario_form = UsuarioForm(request.POST)
-        if usuario_form.is_valid():
-            usuario_form.save()
-            return render(request, 'home/inicio.html')
-    else:
-        usuario_form = UsuarioForm() #De esta manera se crea una instancia HTML de los atributos ya creados en el archivo forms de usuarioforms
+# def CrearUsuario(request):
+#     if request.method == 'POST':
+#         usuario_form = UsuarioForm(request.POST)
+#         if usuario_form.is_valid():
+#             usuario_form.save()
+#             return render(request, 'home/inicio.html')
+#     else:
+#         usuario_form = UsuarioForm() #De esta manera se crea una instancia HTML de los atributos ya creados en el archivo forms de usuarioforms
 
-    return render(request,'usuario/crear_usuario.html',{'usuario_form': usuario_form})
+#     return render(request,'usuario/crear_usuario.html',{'usuario_form': usuario_form})
+
+
+
+
+    
+
+
+def redirecInicio(request):
+
+    return render(request, 'modal/mdl-inicio.html')
+
 
 def mdl_registro(request):
     
@@ -45,29 +58,29 @@ def mdl_registro(request):
 
         run = request.POST.get('run')
         nombre = request.POST.get('nombre')
-        snombre = request.POST.get('snombre')
         apellido = request.POST.get('apellido')
-        sapellido = request.POST.get('sapellido')
-        teledono = request.POST.get('teledono')
+        usuario = request.POST.get('usuario')
+        contrasena = request.POST.get('contrasena')
         correo_electronico = request.POST.get('correo_electronico')
-        fecha_nac = request.POST.get('fecha_nac')
-        direccion = request.POST.get('direccion')
+        telefono = request.POST.get('telefono')
         ciudad = request.POST.get('ciudad')
         comuna = request.POST.get('comuna')
+        fecha_nac = request.POST.get('fecha_nac')
         sexo = request.POST.get('sexo')
+ 
 
         usuario = Usuario.objects.create(
             run = run,
-            primer_nombre = nombre,
-            segundo_nombre = snombre,
-            primer_apellido = apellido,
-            segundo_apellido = sapellido,
+            nombres = nombre,
+            apellidos = apellido,
+            fecha_nacimiento = fecha_nac,
+            usuario = usuario,
+            contrasenna = contrasena,
             correo_electronico = correo_electronico,
-            telefono = teledono,
-            direccion = direccion,
-            region = comuna,
+            telefono = telefono,
             ciudad = ciudad,
-            fecha_nacimiento = fecha_nac
+            comuna = comuna,
+            direccion = sexo,
         )
         usuario.save()
         print("creacion exitosa")
@@ -100,6 +113,29 @@ def productoCategoria(request,categoria_id):
 
     }
     return render(request, 'categoria/productos_categoria.html', context)
+
+def nuevaCategoria(request):
+    valor = request.session.get('username')
+    print(valor)
+    print("catgegogo")
+
+    return render(request, 'categoria/nueva_categoria.html')
+
+def crear_categoria(request): 
+    print("lactm")   
+    nombre = request.POST.get('gte_nombre')
+    fecha = request.POST.get('ctg_fecha_act')
+    categoria = Categoria.objects.create(
+        categoria_nombre = nombre,
+        categoria_fecha_acualizacion = fecha
+    )
+    categoria.save()
+    print("Exito")
+    response = {
+        "estado":1,
+    }       
+    return JsonResponse(response)
+    
 
 #PRODUCTO
 """""PRODUCTO"""
