@@ -26,6 +26,7 @@
                         <th scope="col">nombre</th>
                         <th scope="col">actualizacion</th>
                         <th scope="col">estado</th>
+                        <th scope="col">Editar</th>
                         <th scope="col">linkss</th>
                     </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             <th> {{ categorias.categoria_fecha_acualizacion }}</th>
                     
                             <th> {{ categorias.categoria_vigencia }}</th>
+                            <th><a href="{% url 'home:editar' categorias.categoria_id %}">editar</a></th>
 
                             <th><a href="{% url 'home:categoriaProduc' categorias.categoria_id %}">ir hacia</a></th>
                         </tr>
@@ -52,11 +54,12 @@
                     <h1>No existen categorias para listar</h1>
                 
                 {% endif %}
+                <button type="button"> <a href="{% url 'home:nueva_categoria' %}">CREAR NUEVA CATEGORIA</a></button>
 
             </div>
         {% endblock contenido %}
         </div>
-        <button type="button"> <a href="{% url 'home:nueva_categoria' %}">CREAR NUEVA CATEGORIA</a></button>
+        
     </div>
 
 {% endblock clases_container_contenido %}

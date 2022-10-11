@@ -1,6 +1,6 @@
 $.noConflict();
 
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
 
 	"use strict";
 
@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 		new SelectFx(el);
 	});
 
-	jQuery('.selectpicker').selectpicker;
+	$('.selectpicker').selectpicker;
 
 
 	

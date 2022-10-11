@@ -8,26 +8,32 @@
 
 {% block clases_container_contenido %}
 
-    <div class="container">
+    <div class="">
         <div>
             {% block contenido %}
 
-                <form class="row" action="POST">
+                <form class="row" method="POST">
                     {% csrf_token %}
-  
-                    <div class="col-md-6">
-                        <label for="ctg_nombre" class="form-label">Nombre la nueva categoria</label>
-                        <input type="text" class="form-control" id="ctg_nombre" name="ctg_nombre">
+                    <div class="col-lg-12 ">
+                        <div class="card">
+                            <div class="card-header"><strong>Crear</strong><small> categoria</small></div>
+                            <div class="card-body card-block">
+                
+                                <div class="form-group">
+                                    <!-- <label for="company" class=" form-control-label"> Nombre de la categoria</label> -->
+                                    {{ categoria_form.categoria_nombre.label }}
+                                    {{ categoria_form.categoria_nombre }}
+                                    <!-- <input type="text" id="company" placeholder="{{ categoria.categoria_id }}" value="{{ categoria.categoria_id }}" class="form-control" disabled>  -->
+                                </div>
+                
+                                    {{ categoria_form.categoria_vigencia.label }}
+                                    {{ categoria_form.categoria_vigencia }}
+                                </div>         
+                                <button type="button" class="btn btn-primary" id="btn-registrar-categoria">CREAR</button>               
+                        </div>
+                        
                     </div>
-                    <div class="col-md-6">
-                        <label for="ctg_fecha_act" class="form-label">Fecha actualizacion</label>
-                        <input type="text" class="form-control" id="ctg_fecha_act" name="ctg_fecha_act">
-                    </div>
-                    <hr>
-                    <br> <hr>
-                    <div class="col-12">
-                        <button type="button" class="btn btn-primary"  id="btn_ctg_publicar" name="btn_ctg_publicar">Publicar</button>
-                    </div>
+                    
 
                 </form>
 

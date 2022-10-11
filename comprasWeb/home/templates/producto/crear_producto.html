@@ -1,4 +1,4 @@
-ines (48 sloc)  1.79 KB
+<!-- ines (48 sloc)  1.79 KB -->
 
 {% extends 'home/inicio.html' %}
 
@@ -7,7 +7,8 @@ ines (48 sloc)  1.79 KB
 
 {% block contenido %}
 
-<form class="row g-3">
+<form class="row g-3" action="POST">
+  {% csrf_token %}
   
   <div class="col-md-6">
     <label for="prc_nombre" class="form-label">Nombre del producto</label>
@@ -21,6 +22,14 @@ ines (48 sloc)  1.79 KB
     <label for="prc_descripcion" class="form-label">Descripcion</label>
     <input type="text" class="form-control" id="prc_descripcion" name="prc_descripcion">
   </div>
+
+  <div class="col-12">
+    <button type="button" class="btn btn-primary"  id="btn_publicar" name="btn_publicar">Publicar</button>
+  </div>
+</form>
+
+{% endblock contenido %}
+
   <!-- <div class="col-12">
     <label for="inputAddress2" class="form-label">Dirección 2</label>
     <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
@@ -48,9 +57,3 @@ ines (48 sloc)  1.79 KB
       </label>
     </div>
   </div> -->
-  <div class="col-12">
-    <button type="button" class="btn btn-primary"  id="btn_publicar" name="btn_publicar">Publicar</button>
-  </div>
-</form>
-
-{% endblock contenido %}

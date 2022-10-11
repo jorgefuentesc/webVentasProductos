@@ -3,19 +3,21 @@ from django.urls import path, include
 
 
 
-from .views import inicio,mdl_registro, categorias, productos,descripcionProducto,creacion,productoCategoria,direccionar_producto,crear_producto,nuevaCategoria,crear_categoria,nwindex
+from .views import Inicio,ListaCategoria, mdl_registro,editarCategoria,crearCategoria,  productos,descripcionProducto,creacion,productoCategoria,direccionar_producto,crear_producto,nuevaCategoria,crear_categoria,nwindex
 
 # from  django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', inicio, name ='inicio'),
+    path('', Inicio.as_view(), name ='inicio'),
 
     path('nwindex/', nwindex, name='nwindex'),
 
     #CATEGORIA
-    path('categorias/', categorias, name= 'categorias'),
+    path('categorias/', ListaCategoria.as_view(), name= 'categorias'),
     path('categoriaProduc/<categoria_id>',productoCategoria, name='categoriaProduc'),
-    path('nueva_categoria/', nuevaCategoria, name= 'nueva_categoria'),
+    path('editar/<categoria_id>', editarCategoria, name='editar'),
+    # path('edicarcat/', edicarcat, name= 'edicarcat'),
+    path('nueva_categoria/', crearCategoria, name= 'nueva_categoria'),
     path('nueva_categoria/crear_categoria', crear_categoria, name = 'crear_categoria'),
     #PRODUCTO
     path('productos/', productos, name= 'productos'),

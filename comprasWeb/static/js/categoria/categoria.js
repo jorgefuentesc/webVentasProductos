@@ -18,4 +18,25 @@ $(document).ready(function () {
             }
         });
     })
+
+    $(document).on('click','#btn-registrar-categoria', function() {
+
+        let ctg_nombre = $("#ctg_nombre").val()
+        let ctg_fecha = $("#ctg_fecha").val()
+        // let fecha_creacion = new Date.now()
+        console.log("fecha de ahoraaaa")
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8000/nueva_categoria/",
+            data: {
+                "nombre":ctg_nombre,
+                "fecha":ctg_fecha,
+                'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+            },
+            success: function (response) {
+                console.log("works")
+            }
+        });
+        
+    })
 })

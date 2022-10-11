@@ -1,11 +1,11 @@
 $(document).ready(function () {
 
-    jQuery(document).on('click', '#mdl_registrar', function () {
+    $(document).on('click', '#mdl_registrar', function () {
         console.log("Enlazado correctamente")
-        jQuery('#mdl_registro').modal('show');
+        $('#mdl_registro').modal('show');
     })
 
-    jQuery(document).on('click', '#btn-registro', function () {
+    $(document).on('click', '#btn-registro', function () {
 
 
         let run = $('#inpt_run').val()

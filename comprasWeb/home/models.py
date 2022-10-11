@@ -22,7 +22,7 @@ class Usuario(models.Model):
      
 class Categoria(models.Model):
     categoria_id = models.AutoField(primary_key=True)
-    categoria_nombre = models.TextField(max_length=40,blank=True,null=True)
+    categoria_nombre = models.CharField(max_length=40,blank=True,null=True)
     categoria_fecha_acualizacion = models.TextField(blank=True, null=True)
     categoria_fecha_creacion = models.DateTimeField(auto_now_add=True)
     categoria_vigencia = models.BooleanField(default=True)
