@@ -1,0 +1,53 @@
+<div class="modal" tabindex="-1" role="dialog" id="mdl_registro_usuario">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+  
+          <h5 class="modal-title">FORMULARIO DE REGISTRO</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <form action="{% url 'users:registro' %}" method="post" class="row g-3 needs-validation" id="registro">
+            {% csrf_token %}
+            <!-- {{ form.as_p }} -->
+  
+            <div class="col-md-6">
+              <label for="inpt_correo" class="form-label">CORREO ELECTRONICO</label>
+              {{ registroForm.email }}
+            </div>
+
+            <div class="col-md-6">
+              <label for="inpt_nombres" class="form-label">NOMBRES</label>
+              {{ registroForm.nombres }}
+            </div>
+  
+            <div class="col-md-6">
+              <label for="inpt_apellido" class="form-label">APELLIDOS</label>
+              {{ registroForm.apellidos }}
+            </div>
+
+            <div class="col-md-6">
+              <label for="inpt_contrasenna" class="form-label">CONTRASEÑA</label>
+              {{ registroForm.password }}
+            </div>
+
+            <div class="col-md-6">
+              <label for="inpt_contrasenna" class="form-label">REPETIR CONTRASEÑA</label>
+              {{ registroForm.password2 }}
+            </div>
+
+            <div class="modal-footer col-12">
+              <button type="submit" class="btn btn-primary">REGISTRARSE</button>
+            </div>
+          </form>
+  
+          <div>
+  
+          </div>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>

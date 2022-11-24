@@ -1,0 +1,66 @@
+{% extends 'home/home/inicio.html' %}
+{% load static %}
+
+
+{% block titulo_principal %}
+    <h2>Categoria (s)</h2>
+{% endblock titulo_principal %}
+
+
+
+
+
+
+{% block clases_container_contenido %}
+    
+    <div class="container">
+
+        <div>
+
+        {% block contenido %}
+            <div>
+                {% if categoria %}
+                <table class="table">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">nombre</th>
+                        <th scope="col">actualizacion</th>
+                        <th scope="col">estado</th>
+                        <th scope="col">Editar</th>
+                        <th scope="col">linkss</th>
+                    </tr>
+                    </thead>
+                    {% for categorias in categoria %}
+
+                    <tbody>
+                        <tr>
+                            <th> {{ categorias.categoria_id }}</th>
+                    
+                            <th> {{ categorias.categoria_nombre }}</th>
+                        
+                    
+                            <th> {{ categorias.categoria_fecha_acualizacion }}</th>
+                    
+                            <th> {{ categorias.categoria_vigencia }}</th>
+                            <th><a href="{% url 'home:editar' categorias.categoria_id %}">editar</a></th>
+
+                            <th><a href="{% url 'home:categoriaProduc' categorias.categoria_id %}">ir hacia</a></th>
+                        </tr>
+                    </tbody>
+
+                    {% endfor %}
+                </table>
+                    {% else %}
+                    <h1>No existen categorias para listar</h1>
+                
+                {% endif %}
+                <button type="button"> <a href="{% url 'home:nueva_categoria' %}">CREAR NUEVA CATEGORIA</a></button>
+
+            </div>
+        {% endblock contenido %}
+        </div>
+        
+    </div>
+
+{% endblock clases_container_contenido %}
+

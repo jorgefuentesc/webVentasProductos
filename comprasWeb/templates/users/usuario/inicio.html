@@ -1,0 +1,43 @@
+<div class="modal" tabindex="-1" role="dialog" id="mdl_inicio_sesion">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title">FORMULARIO DE INICIO</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'users:login' %}" method="post" class="row g-3 needs-validation" id="login">
+                    {% csrf_token %}
+                    <!-- {{ form.as_p }} -->
+                    <div class="col-md-6">
+                        <label for="inpt_run" class="form-label">Correo Electronico</label>
+                        {{ loginForm.email }}
+                        <div class="valid-feedback">
+                            Campo requerido
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="inpt_nombre" class="form-label">Contraseña</label>
+                        {{ loginForm.password }}
+
+                        <div class="valid-feedback">
+                            Campo requerido
+                        </div>
+                    </div>
+                    <!-- {{ usuario_form.as_p }} -->
+
+                    <button type="submit" class="btn btn-primary" >INGRESAR</button>
+
+                </form>
+
+                <div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

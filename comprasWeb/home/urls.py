@@ -1,14 +1,15 @@
 
 from django.urls import path, include
 
+from django.contrib.auth.decorators import login_required
 
-
-from .views import Inicio,ListaCategoria, mdl_registro,editarCategoria,crearCategoria,  productos,descripcionProducto,creacion,productoCategoria,direccionar_producto,crear_producto,nuevaCategoria,crear_categoria,nwindex
+from .views import RegistrarUsuario,Inicio,ListaCategoria, mdl_registro,editarCategoria,crearCategoria,  productos,descripcionProducto,creacion,productoCategoria,direccionar_producto,crear_producto,crear_categoria,nwindex
 
 # from  django.contrib.auth import views as auth_views
-
+app_name = 'home'
 urlpatterns = [
     path('', Inicio.as_view(), name ='inicio'),
+    path('registrar/', RegistrarUsuario.as_view(), name='registrar'),
 
     path('nwindex/', nwindex, name='nwindex'),
 

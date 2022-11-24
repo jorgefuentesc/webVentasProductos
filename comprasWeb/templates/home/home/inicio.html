@@ -1,0 +1,25 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block modal %}
+
+    {% include 'home/modal/mdl-registro.html'  %}
+    {% include 'users/usuario/inicio.html' %}
+    {% include 'users/usuario/crear_usuario.html' %}
+
+{% endblock modal %}
+
+
+
+
+
+{% block script %}
+<script src="{% static 'js/libs/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/modal/mdl-registro.js' %}"></script>
+<script src="{% static 'js/producto/producto.js' %}"></script>
+<script src="{% static 'js/categoria/categoria.js' %}"></script>
+
+<script src="{% static 'js/users/modal/login-mdl.js' %}"></script>
+<script src="{% static 'js/users/modal/registro-mdl.js' %}"></script>
+
+{% endblock script %}

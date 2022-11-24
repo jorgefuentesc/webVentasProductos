@@ -1,0 +1,22 @@
+{% extends 'home/home/inicio.html' %}
+
+{% load static %}
+
+{% block titulo %} Producto en venta {% endblock titulo %}
+
+
+{% block contenido %}
+
+
+{% if producto %}
+
+<p>{{ producto.producto_id }}</p>
+<p>{{ producto.prod_nombre }}</p>
+<p>{{ producto.precio }}</p>
+<p>{{ producto.prod_descripcion }}</p>
+
+{% endif %}
+
+
+{% endblock contenido %}
+

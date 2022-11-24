@@ -1,24 +1,9 @@
 
 from django.db import models
+from users.models import Usuario
+from django.conf import settings
 
 
-class Usuario(models.Model):
-    usuario_id = models.AutoField(primary_key=True)
-    run = models.CharField(max_length=20,blank=True,null=True)
-    nombres = models.CharField(max_length=220,blank=True,null=True)
-    apellidos = models.CharField(max_length=220,blank=True,null=True)
-    fecha_nacimiento = models.CharField(max_length=220,blank=True,null=True)
-    usuario = models.CharField(max_length=220, blank=True,null=True)
-    contrasenna = models.CharField(max_length=220,blank=True,null=True)
-    correo_electronico = models.CharField(max_length=220,blank=True,null=True) 
-    telefono = models.CharField(max_length=20,blank=True, null=True)
-    ciudad = models.CharField(max_length=220,blank=True,null=True)
-    comuna = models.CharField(max_length=220,blank=True,null=True)
-    direccion = models.CharField(max_length=220,blank=True,null=True)
-    fecha_creacion = models.DateTimeField(auto_now_add=True)
-    usuario_vigencia = models.BooleanField(default=True)
-    def __str__(self):
-        return 'nombre: %s %s' % (self.nombres, self.apellidos)
      
 class Categoria(models.Model):
     categoria_id = models.AutoField(primary_key=True)
@@ -40,7 +25,7 @@ class Producto(models.Model):
     prod_fecha_creacion = models.DateTimeField(auto_now_add=True)
     prod_vigencia = models.BooleanField(default=True)
     categoria_id = models.ForeignKey(Categoria, blank=True,null=True, on_delete=models.CASCADE)
-    usuario_id = models.ForeignKey(Usuario,blank=True,null=True, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, blank=True,null=True, on_delete=models.CASCADE)
     def __str__(self):
         return 'El nombre del producto es %s y el precio es $ %s id fk: %s' % (self.prod_nombre, self.precio, self.categoria_id)
 

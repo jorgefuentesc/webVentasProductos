@@ -6,7 +6,11 @@ from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
 
-from .forms import CategoriaForm
+
+
+#
+
+from .forms import CategoriaForm,RegistroUsuarioForm
 
 from .models import Categoria, Producto, Usuario
 
@@ -15,11 +19,24 @@ from datetime import datetime
 # from django.contrib import messages
 # from django.views import View
 
+from django.contrib.auth.models import User
+# from django.contrib.auth.forms import UserCreationForm
+from django.views.generic import CreateView
+# from django.core.urlresolvers import 
+from django.urls import reverse_lazy
 
 
+
+class RegistrarUsuario(CreateView):
+    model = User
+    template_name = "users/usuario/crear_usuario.html"
+    form_class = RegistroUsuarioForm
+    success_url = reverse_lazy('home:inicio')
 
 def nwindex(request):
+    
     return render(request, 'home/nwindex.html')
+    
     
 # Create your views here.
 
@@ -36,7 +53,7 @@ def nwindex(request):
 
 
 class Inicio(TemplateView):
-    template_name = 'home/inicio.html'
+    template_name = 'home/home/inicio.html'
     """
     solamente se puede utilizar el template name con el templateView para hacer llamado de una poagina/renderizacion
     def get(self, request, *args, **kwargs):
@@ -116,8 +133,9 @@ def mdl_registro(request):
 
 
 class ListaCategoria(ListView):
+    
     model = Categoria
-    template_name = 'categoria/categoria.html'
+    template_name = 'home/categoria/categoria.html'
     context_object_name = 'categoria' #retorna como el valor de queryset con el nombre el cual esta definido el cual es 'categoria'
     queryset = Categoria.objects.filter(categoria_vigencia = True)
     """
@@ -146,8 +164,15 @@ class ListaCategoria(ListView):
 #     return render(request,'usuario/crear_usuario.html',{'usuario_form': usuario_form})
 
 def crearCategoria(request):
+    print("categoriaListaaaaaaaaaaaaaaaa")
+    print(request,", requestt")
     now = datetime.now()
-    print(request.method, "metodo actua essss")
+    # print(request.method, "metodo actua essss")
+    
+    name = request.session['usuario']
+    # valor2 = request.session.post('username')
+    print("categorririri", name)
+    # print(valor2,"valor2")
     if request.method == 'POST':
         categoria_form = CategoriaForm(request.POST)
         print("METIDO EN CREACION")
@@ -164,7 +189,7 @@ def crearCategoria(request):
             
         }
         
-    return render(request, 'categoria/nueva_categoria.html', {'categoria_form':categoria_form})
+    return render(request, 'home/categoria/nueva_categoria.html', {'categoria_form':categoria_form})
     
 # def edicarcat(request):
 #     nombre = request.POST.get('nombre')
@@ -176,7 +201,7 @@ def editarCategoria(request, categoria_id):
     productoUser = get_object_or_404(Categoria, categoria_id = categoria_id)
 
 
-    return render(request, 'categoria/editar.html', {'categoria':productoUser})
+    return render(request, 'home/categoria/editar.html', {'categoria':productoUser})
     
 
 def productoCategoria(request,categoria_id):
@@ -190,14 +215,17 @@ def productoCategoria(request,categoria_id):
         'categoria_name':categoriaName,
 
     }
-    return render(request, 'categoria/productos_categoria.html', context)
+    return render(request, 'home/categoria/productos_categoria.html', context)
 
 def nuevaCategoria(request):
+    print("HOLAAA")
     valor = request.session.get('username')
+    valor2 = request.session['username']
     print(valor)
+    print(valor2, "Hello")
     print("catgegogo")
 
-    return render(request, 'categoria/nueva_categoria.html')
+    return render(request, 'home/categoria/nueva_categoria.html')
 
 def crear_categoria(request): 
     print("lactm")   
@@ -236,13 +264,13 @@ def productos(request):
         'productos':prodrelated
     }
     
-    return render(request, 'producto/producto.html', context)
+    return render(request, 'home/producto/producto.html', context)
 
 def descripcionProducto(request,slug):
 
     productoUser = get_object_or_404(Producto, slug=slug) #get_object_or_404 sirve como validador en caso de error y tambien retorna un objeto con los parametros requeridos
     # productoUser = Producto.objects.get(slug = slug)
-    return render(request, 'producto/postProducto.html', {'producto':productoUser})
+    return render(request, 'home/producto/postProducto.html', {'producto':productoUser})
 
 def crear_producto(request):
     
@@ -261,8 +289,11 @@ def crear_producto(request):
     return JsonResponse(response)
 
 def direccionar_producto(request):
-
-    return render(request, 'producto/crear_producto.html')
+    valor = request.session.get('username')
+    valor2 = request.session.get('username')
+    print(valor)
+    print(valor2, "Hello")
+    return render(request, 'home/producto/crear_producto.html')
 
 
 # def testJson(request):
